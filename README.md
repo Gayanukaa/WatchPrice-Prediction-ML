@@ -1,6 +1,8 @@
 # Fitness-Trackers-EDA
 End to End Linear Regression Project
 
+Small dataset - [Fitness Trackers Products Ecommerce](https://www.kaggle.com/datasets/arnabchaki/fitness-trackers-products-ecommerce)
+
 ## Project Lifecycle
 
 1. Problem Identification
