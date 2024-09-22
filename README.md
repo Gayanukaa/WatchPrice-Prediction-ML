@@ -18,3 +18,4 @@ Small dataset - [Fitness Trackers Products Ecommerce](https://www.kaggle.com/dat
 ## Commands
 
 conda activate ml-pyt
+conda deactivate
