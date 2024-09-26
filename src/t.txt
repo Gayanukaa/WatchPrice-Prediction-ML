@@ -1,3 +1,0 @@
-We used pandas dummy module to transform for categorical variables. But it's doesn't always work especially when you have higher number of categories.
-Pandas dummy sees all the variables and converts. But during prediction we pass only one at a time. Model will not know what the other values are. Because other values are also in dimensions.
-Instead we use sklearn one-hot encodings.
