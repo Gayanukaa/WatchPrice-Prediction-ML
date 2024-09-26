@@ -18,7 +18,7 @@ class LoadData:
 class PreprocessData(LoadData):
     def __init__(self):
         super().__init__()
-        self.on_encode = OneHotEncoder(sparse=False)
+        self.on_encode = OneHotEncoder()
 
     # Pipeline 1: Prediction
     # Method to clean data for prediction without saving the cleaned data

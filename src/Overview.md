@@ -23,3 +23,5 @@ python train.py
 ```bash
 python predict.py
 ```
+
+Access FastAPI Swagger UI from http://127.0.0.1:8000/docs
