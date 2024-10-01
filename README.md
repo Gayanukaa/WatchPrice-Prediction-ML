@@ -1,4 +1,4 @@
-# Fitness-Trackers-EDA
+# WatchPrice-Prediction-ML
 
 End to End Linear Regression Project
 
