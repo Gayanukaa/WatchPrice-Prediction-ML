@@ -56,31 +56,28 @@ class PreprocessData(LoadData):
 
     # Method to remove extra columns from the dataframe
     def _remove_extra_col(self, extra_col: List[str]):
-        self.df.drop(extra_col, axis=1, inplace=True)
+        self.df = self.df.drop(extra_col, axis=1)
 
     # Method to clean the 'Display Size' column
     def _clean_display_col(self):
-        self.df['Display Size'].fillna('0.0 inches', inplace=True)
-        self.df['Display Size'] = self.df['Display Size'].apply(
-            lambda x: float(x.split()[0]))
-        self.df['Display Size'].replace(0.0, np.nan, inplace=True)
+        self.df['Display Size'] = self.df['Display Size'].fillna('0.0 inches')
+        self.df['Display Size'] = self.df['Display Size'].apply(lambda x: float(x.split()[0]))
+        self.df['Display Size'] = self.df['Display Size'].replace(0.0, np.nan)
 
     # Method to clean the 'Weight' column by converting ranges to averages
     def _clean_weight_col(self):
         cal = sum([int(x) for x in re.findall('\d+', '20 - 35 g ')]) / 2
-        self.df['Weight'].replace('20 - 35 g', cal, inplace=True)
+        self.df['Weight'] = self.df['Weight'].replace('20 - 35 g', cal)
 
         cal = sum([int(x) for x in re.findall('\d+', '35 - 50 g')]) / 2
-        self.df['Weight'].replace('35 - 50 g', cal, inplace=True)
+        self.df['Weight'] = self.df['Weight'].replace('35 - 50 g', cal)
 
         cal = sum([int(x) for x in re.findall('\d+', '50 - 75 g')]) / 2
-        self.df['Weight'].replace('50 - 75 g', cal, inplace=True)
+        self.df['Weight'] = self.df['Weight'].replace('50 - 75 g', cal)
 
-        self.df['Weight'].replace(
-            '75g +', float(re.findall('\d+', '75g +')[0]), inplace=True)
+        self.df['Weight'] = self.df['Weight'].replace('75g +', float(re.findall('\d+', '75g +')[0]))
 
-        self.df['Weight'].replace('<= 20 g', float(
-            re.findall('\d+', '<= 20 g')[0]), inplace=True)
+        self.df['Weight'] =self.df['Weight'].replace('<= 20 g', float(re.findall('\d+', '<= 20 g')[0]))
 
     # Method to create a new column for discount price and drop the discount percentage column
     def _create_discount_col(self):
@@ -118,7 +115,7 @@ class PreprocessData(LoadData):
                 self.numerical_col = col.split(',')
         # Fill missing values in numerical columns with the median
         for col in self.numerical_col:
-            self.df[col].fillna(self.df[col].median(), inplace=True)
+            self.df[col] = self.df[col].fillna(self.df[col].median())
 
     # Method to scale numerical data using MinMaxScaler
     def _scale_data(self):
@@ -132,7 +129,7 @@ class PreprocessData(LoadData):
     def _remove_na_catogorical_col(self):
         self.imp_col = config.IMP_COL_CATOGORICAL
         for col in self.imp_col[1:]:
-            self.df[col].fillna('other', inplace=True)
+            self.df[col] = self.df[col].fillna('other')
 
     # Method to one-hot encode categorical columns
     def _vectorize_catogorical_col(self, save=True):
