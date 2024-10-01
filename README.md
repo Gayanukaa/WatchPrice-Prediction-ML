@@ -35,7 +35,8 @@ Separate sections tested out in jupyter notebooks. Final scripts and project dep
 8. Model Training
 9. Model Deployment
 
-## Directory Hierarchy
+## Project Structure
+
 ```
 |—— data
 |    |—— clean.csv
@@ -68,6 +69,15 @@ Separate sections tested out in jupyter notebooks. Final scripts and project dep
 |    |—— train.py
 |    |—— test.json
 ```
+## Results
+
+| Model Stage | R2 Score | Standard Deviation | Hyperparameters                                           |
+|------------------------------|-----------------------------------------------|--------------------|---------------------------------------------------------------|
+| Decision Tree Model                 | 0.1336        | 0.2665             | -             | -                                                           |
+| Random Forest Model                 | 0.5850        | 0.1444             | -             | -                                                           |
+| XGB Model               | 0.6697    | 0.1146             | -             | -                                                             |
+| After Hyperparameter Tuning (XGB model)   | 0.7615                                             | -             |  learning_rate: 0.2 <br> max_depth: 3<br> n_estimators: 300   |
+
 
 ### Tested Platform
 ```
