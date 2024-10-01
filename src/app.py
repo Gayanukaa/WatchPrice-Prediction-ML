@@ -18,7 +18,7 @@ class ProductModel(BaseModel):
     strap_color: str
     strap_material: str
     touchscreen: str
-    battery_life_days: str
+    battery_life_days: int
     bluetooth: str
     display_size: str
     weight: str
