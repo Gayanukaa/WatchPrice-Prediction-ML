@@ -1,27 +1,64 @@
-We used pandas dummy module to transform for categorical variables. But it's doesn't always work especially when you have higher number of categories. <br><br>
-Pandas dummy sees all the variables and converts. But during prediction we pass only one at a time. Model will not know what the other values are. Because other values are also in dimensions.<br><br>
-Instead we use sklearn one-hot encodings.
+# Scripting the Process and Model Deployment
 
-Files included
-- config.py : Configuration file
-- data.py: Data preprocessing file
-- model.py: Model file
-- predict.py: Prediction file
-- train.py: Training file
-- requirements.txt: Required libraries
+## Files Included
+- `config.py`: Configuration settings
+- `data.py`: Data preprocessing logic
+- `model.py`: Model definition and related logic
+- `predict.py`: Prediction logic
+- `train.py`: Model training script
+- `requirements.txt`: List of required Python libraries
 
-## How to use
-1. Install required libraries
+## How to Use
+
+### 1. Install Required Libraries
+First, install the required dependencies:
 ```bash
 pip install -r requirements.txt
 ```
-2. Run the training file
+### 2. Train the Model
+Run the following command to train the model:
+
 ```bash
 python train.py
 ```
-3. Run the prediction file
+### 3. Make Predictions
+After training, you can make predictions by running:
 ```bash
 python predict.py
 ```
+### 4. Access FastAPI Swagger UI
+Once the application is running, you can access the FastAPI Swagger UI for testing at: ```http://127.0.0.1:8000/docs```
 
-Access FastAPI Swagger UI from http://127.0.0.1:8000/docs
+## Docker Usage
+
+To build and start the application using the following command:
+
+```bash
+docker run -p 80:80 watchprice-fastapi
+```
+
+<!-- 1. Create a Requirements File
+Generate the requirements.txt file for the Docker image:
+
+```bash
+pip list --format=freeze > requirements.txt
+```
+
+2. Build the Docker Image
+To build the Docker image, run:
+
+```bash
+docker build -t watchprice-fastapi .
+```
+
+3. Run the Docker Container
+Finally, start the application using the following command:
+
+```bash
+docker run -p 80:80 watchprice-fastapi
+``` -->
+
+## Notes
+- In this project, initially used the `pandas.get_dummies()` function to transform categorical variables. However, this method is not always ideal, especially when there is a large number of categories. <br><br> The issue with `pandas.get_dummies()` is that it converts all categorical variables during training. However, when making predictions, the model might encounter new values in the categorical variables. The model won't recognize these values because they are part of the dimension created during the initial transformation. <br><br> To overcome this, use **Scikit-learn's OneHotEncoder**, which handles unseen categories during prediction more effectively.
+
+- This project leverages FastAPI for building APIs and Docker for containerization. Make sure Docker is installed and running on your system before building and running the container.
